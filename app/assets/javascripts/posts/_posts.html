@@ -1,0 +1,9 @@
+<div ng-repeat="pos in posts | orderBy:'id'"><!--post ya está ocupado en el controlador-->
+	<ul>
+		<li>{{pos.title}}</li>
+		<li>{{pos.body}}</li>
+		<li><a href="#/posts/{{pos.id}}">Enlace</a></li>
+		<li><a href="#" ng-click="removePost(pos)">Eliminar</a></li>
+	</ul>
+</div>
+<p><a href="#/posts/new-post">Nuevo post</a></p>

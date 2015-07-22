@@ -5,8 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <base href="/">
 </head>
-<body>
-	<h1>HOLA!!!</h1>
+<body ng-app="arBlog">
+	<div ui-view></div>
 </body>
 </html>
