@@ -1,6 +1,8 @@
 require "application_responder"
 
 class ApplicationController < ActionController::Base
+  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_authenticity_request
+
   self.responder = ApplicationResponder
   respond_to :json
 
@@ -18,5 +20,12 @@ class ApplicationController < ActionController::Base
   private
   def configure_permitted_parameters
   	devise_parameter_sanitizer.for(:sign_up) << :username
+  end
+
+  #Clean up cookies and session on InvalidAuthenticityRequest
+  def invalid_authenticity_request
+    sign_out(current_user)
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+    render error: 'invalid token', status: :unprocessable_entity
   end
 end
