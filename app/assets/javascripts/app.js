@@ -1,4 +1,4 @@
-angular.module('arBlog',['ui.router', 'templates'])
+angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 
 .config([
 	'$stateProvider',
@@ -30,7 +30,6 @@ angular.module('arBlog',['ui.router', 'templates'])
 				templateUrl: 'posts/_new.html',
 				controller: 'PostsCtrl'
 			})
-
 			.state('postEdit', {
 				url: '/posts/edit-post/{id:[0-9]{1,8}}',
 				templateUrl: 'post/_edit.html',
@@ -41,10 +40,26 @@ angular.module('arBlog',['ui.router', 'templates'])
 					}]
 				}
 			})
-			//.state('removePost',{
-			//	url: '/posts/remove/{id:[0-9]{1,8}}',
-			//	controller: 'PostsCtrtl'
-			//})		
+			.state('login', {
+				url: '/login',
+				templateUrl: 'auth/_login.html',
+				controller: 'AuthCtrl',
+				onEnter: ['$state', 'Auth', function($state,Auth){
+					Auth.currentUser().then(function(){
+						$state.go('posts');
+					})
+				}]
+			})
+			.state('register', {
+				url: '/register',
+				templateUrl: 'auth/_register.html',
+				controller: 'AuthCtrl',
+				onEnter: ['$state','Auth',function($state,Auth){
+					Auth.currentUser().then(function(){
+						$state.go('posts');
+					})
+				}]
+			})
 		//para eliminar el hastag, pero parece incompatible con otherwise()
 		//$locationProvider.html5Mode(true).hashPrefix('!');
 		$urlRouterProvider.otherwise('/');
