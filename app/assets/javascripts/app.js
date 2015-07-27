@@ -44,7 +44,8 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 				url: '/login',
 				templateUrl: 'auth/_login.html',
 				controller: 'AuthCtrl',
-				onEnter: ['$state', 'Auth', function($state,Auth){
+				//onEnter onExit change for reducing post petitions... will work?
+				onExit: ['$state', 'Auth', function($state,Auth){
 					Auth.currentUser().then(function(){
 						$state.go('posts');
 					})
@@ -54,7 +55,8 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 				url: '/register',
 				templateUrl: 'auth/_register.html',
 				controller: 'AuthCtrl',
-				onEnter: ['$state','Auth',function($state,Auth){
+				//onEnter onExit change for reducing post petitions... will work?
+				onExit: ['$state','Auth',function($state,Auth){
 					Auth.currentUser().then(function(){
 						$state.go('posts');
 					})
