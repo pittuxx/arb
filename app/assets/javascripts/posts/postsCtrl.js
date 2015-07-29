@@ -19,9 +19,10 @@ angular.module('arBlog')
 			$scope.created = 'Post successfuly created';
 		};
 
-		//for confirmation before delete is necessary a directive...
 		$scope.removePost = function(post){
-			posts.delete(post);
+			if(confirm('are you sure?')){
+				posts.delete(post);
+			}
 		};
 	}
 ]);
