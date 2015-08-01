@@ -14,4 +14,9 @@ angular.module('arBlog')
 			date = new Date();
 			$scope.updated = date.toLocaleTimeString();
 		};
+
+		//creates error message when user is not authorized to do the action 
+		$scope.$on('unauthorizedAction',function(e,data){
+			$scope.errorMsg = data.errorMessage;
+		});
 	}]);

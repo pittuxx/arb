@@ -1,5 +1,7 @@
 <div class="page-header">
   <h1>Posts</h1>
+  <h2 ng-if="errorMsg">{{errorMsg}}</h2>
+  <h2>{{what}}</h2>
 </div>
 
 <div ng-repeat="pos in posts | orderBy:'id'"><!--post ya está ocupado en el controlador-->
