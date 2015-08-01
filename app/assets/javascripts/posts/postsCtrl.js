@@ -13,13 +13,14 @@ angular.module('arBlog')
 		$scope.created = false;
 
 		$scope.addOrEditPost = function(){
-			posts.create($scope.post)
+			posts.create($scope.post);
 			//clear form fields
 			$scope.post = {};
 			$scope.created = 'Post successfuly created';
 		};
 
 		$scope.removePost = function(post){
+			//confirm before delete...
 			if(confirm('are you sure?')){
 				posts.delete(post);
 			}

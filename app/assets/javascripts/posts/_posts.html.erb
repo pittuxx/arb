@@ -3,6 +3,7 @@
 </div>
 
 <div ng-repeat="pos in posts | orderBy:'id'"><!--post ya está ocupado en el controlador-->
+	<!--<ul ng-if="pos.published"> show only if published is true -->
 	<ul>
 		<li>{{pos.title}}</li>
 		<li>{{pos.body}}</li>
@@ -11,3 +12,6 @@
 	</ul>
 </div>
 <p><a href="#/posts/new-post">Nuevo post</a></p>
+<div ng-if="user">
+	<h1>HOLA</h1>
+</div>

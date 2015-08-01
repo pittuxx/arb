@@ -6,6 +6,7 @@ angular.module('arBlog')
 	function($scope,posts,post,$location){
 		$scope.post = post;
 		$scope.updated = false;
+		//message for showing in form
 		$scope.what = 'Edit Post';
 
 		$scope.addOrEditPost = function(){
