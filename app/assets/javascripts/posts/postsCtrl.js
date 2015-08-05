@@ -1,31 +1,32 @@
 angular.module('arBlog')
 .controller('PostsCtrl',[
 	'$scope',
-	'posts',
-	function($scope,posts){
-		$scope.posts = posts.posts;
+	'postsFactory',
+	function($scope,postsFactory){
+		$scope.posts = postsFactory.posts;
 		//empty object that will receive form field data
 		$scope.post = {};
 		//message for showing in form
 		$scope.what = 'New Post';
 		//success msg for post created
 		$scope.created = false;
-		//
+		//delete this?
 		$scope.errorMsg = undefined;
 
 		//Add Post
 		$scope.addOrEditPost = function(){
-			posts.create($scope.post);
+			postsFactory.create($scope.post);
 			//clear form fields
 			$scope.post = {};
 			//PROBLEM created is also setted when post is not created
 			$scope.created = 'Post successfuly created';
 		};
 
+		//Remove post
 		$scope.removePost = function(post){
 			//confirm before delete...
 			if(confirm('are you sure?')){
-				posts.delete(post);
+				postsFactory.delete(post);
 			}
 		};
 

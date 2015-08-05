@@ -10,10 +10,11 @@
 		<li>{{pos.title}}</li>
 		<li>{{pos.body}}</li>
 		<li><a href="#/posts/{{pos.id}}">Enlace</a></li>
-		<li><a href="#" ng-click="removePost(pos)">Eliminar</a></li>
+		<li><a href="#/posts/edit-post/{{pos.id}}">Editar</a></li>
+		<li ng-if="signedIn()"><a href="#" ng-click="removePost(pos)">Eliminar</a></li>
 	</ul>
 </div>
-<p><a href="#/posts/new-post">Nuevo post</a></p>
+<p ng-if="signedIn()"><a href="#/posts/new-post">Nuevo post</a></p>
 <div ng-if="user">
 	<h1>HOLA</h1>
 </div>

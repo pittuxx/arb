@@ -1,5 +1,5 @@
 angular.module('arBlog')
-.factory('posts',['$http','$rootScope',function($http,$rootScope){
+.factory('postsFactory',['$http','$rootScope',function($http,$rootScope){
 	var o = { posts: [] };
 
 	o.getAll = function(){

@@ -10,8 +10,8 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 				templateUrl: 'posts/_posts.html',
 				controller: 'PostsCtrl',
 				resolve: {
-					postPromise: ['posts', function(posts){
-						return posts.getAll();
+					postPromise: ['postsFactory', function(postsFactory){
+						return postsFactory.getAll();
 					}]
 				}
 			})
@@ -20,24 +20,40 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 				templateUrl: 'post/_post.html',
 				controller: 'PostCtrl',
 				resolve: {
-					post: ['$stateParams', 'posts', function($stateParams,posts){
-						return posts.get($stateParams.id);
+					post: ['$stateParams', 'postsFactory', function($stateParams,postsFactory){
+						return postsFactory.get($stateParams.id);
 					}]
 				}
 			})
 			.state('newPost',{//Si se cambia a slug habrá que poner esta ruta encima de 'post'
 				url: '/posts/new-post',
 				templateUrl: 'posts/_new.html',
-				controller: 'PostsCtrl'
+				controller: 'PostsCtrl',
+				resolve: {
+					auth: ['Auth','$state',function(Auth,$state){
+						if(!Auth.isAuthenticated()){
+							$state.go('posts');
+						}
+					}]
+				}
 			})
 			.state('postEdit', {
 				url: '/posts/edit-post/{id:[0-9]{1,8}}',
 				templateUrl: 'post/_edit.html',
 				controller: 'PostCtrl',
 				resolve: {
-					post: ['$stateParams', 'posts', function($stateParams,posts){
-						return posts.get($stateParams.id);
-					}]
+					post: ['Auth',
+						'$state',
+						'$stateParams',
+						'postsFactory',
+						function(Auth,$state,$stateParams,postsFactory){
+							if(!Auth.isAuthenticated()){
+								$state.go('posts');
+							}else{
+								return postsFactory.get($stateParams.id);
+							}
+						}
+					]
 				}
 			})
 			.state('login', {
@@ -45,7 +61,7 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 				templateUrl: 'auth/_login.html',
 				controller: 'AuthCtrl',
 				//onEnter onExit change for reducing post petitions... will work?
-				onExit: ['$state', 'Auth', function($state,Auth){
+				onEnter: ['$state', 'Auth', function($state,Auth){
 					Auth.currentUser().then(function(){
 						$state.go('posts');
 					})
@@ -56,7 +72,7 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 				templateUrl: 'auth/_register.html',
 				controller: 'AuthCtrl',
 				//onEnter onExit change for reducing post petitions... will work?
-				onExit: ['$state','Auth',function($state,Auth){
+				onEnter: ['$state','Auth',function($state,Auth){
 					Auth.currentUser().then(function(){
 						$state.go('posts');
 					})
@@ -67,3 +83,10 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 		$urlRouterProvider.otherwise('/');
 	}
 ])
+
+//angular.module('arBlog')
+.run(['$rootScope','Auth',function($rootScope,Auth){
+	//present in all the app
+	$rootScope.signedIn = Auth.isAuthenticated;
+	$rootScope.logout = Auth.logout;
+}])

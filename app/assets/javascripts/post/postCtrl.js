@@ -1,16 +1,17 @@
 angular.module('arBlog')
 .controller('PostCtrl',[
 	'$scope',
-	'posts',
+	'postsFactory',
 	'post',
-	function($scope,posts,post,$location){
+	function($scope,postsFactory,post,$location){
 		$scope.post = post;
 		$scope.updated = false;
 		//message for showing in form
 		$scope.what = 'Edit Post';
 
+		//EDIT post
 		$scope.addOrEditPost = function(){
-			posts.update($scope.post);
+			postsFactory.update($scope.post);
 			date = new Date();
 			$scope.updated = date.toLocaleTimeString();
 		};
