@@ -42,14 +42,14 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 				templateUrl: 'post/_edit.html',
 				controller: 'PostCtrl',
 				resolve: {
-					post: ['Auth',
-						'$state',
+					post: ['$q',
+						'Auth',
 						'$stateParams',
 						'postsFactory',
-						function(Auth,$state,$stateParams,postsFactory){
-							if(!Auth.isAuthenticated()){
-								$state.go('posts');
-							}else{
+						function($q,Auth,$stateParams,postsFactory){
+						if(!Auth.isAuthenticated()){
+							return $q.reject("Not Authorized");
+						}else{
 								return postsFactory.get($stateParams.id);
 							}
 						}
@@ -85,8 +85,8 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 ])
 
 //angular.module('arBlog')
-.run(['$rootScope','Auth',function($rootScope,Auth){
+/*.run(['$rootScope','Auth',function($rootScope,Auth){
 	//present in all the app
 	$rootScope.signedIn = Auth.isAuthenticated;
 	$rootScope.logout = Auth.logout;
-}])
+}])*/
