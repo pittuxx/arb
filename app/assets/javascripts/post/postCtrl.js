@@ -3,13 +3,25 @@ angular.module('arBlog')
 	'$scope',
 	'postsFactory',
 	'post',
-	function($scope,postsFactory,post,$location){
+	'metaService',
+	'$location',
+	function($scope,postsFactory,post,metaService,$location){
+		post.url = $location.url();
 		$scope.post = post;
 		$scope.updated = false;
 		//message for showing in form
 		$scope.what = 'Edit Post';
 
-		//EDIT post
+		//set meta title
+		metaService.setTitle(post.title);
+		//set meta description
+		metaService.setDescription(post.meta_description);
+		//set twitter meta tags
+		metaService.setTwitterMetas(post);
+		//set open graph meta tags
+		metaService.setOgMetas(post);
+
+		//Edit post
 		$scope.addOrEditPost = function(){
 			postsFactory.update($scope.post);
 			date = new Date();
@@ -20,4 +32,5 @@ angular.module('arBlog')
 		$scope.$on('unauthorizedAction',function(e,data){
 			$scope.errorMsg = data.errorMessage;
 		});
+
 	}]);
