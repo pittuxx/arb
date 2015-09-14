@@ -5,7 +5,7 @@ angular.module('arBlog')
 	'$http',
 	function($scope,Auth,$http){
 		//now is defined in '.run'
-		$scope.signedIn = Auth.isAuthenticated;
+		//$scope.signedIn = Auth.isAuthenticated;
 		//$scope.logout = Auth.logout;
 		$scope.logout = function() {
         Auth.logout().then(function(oldUser) {

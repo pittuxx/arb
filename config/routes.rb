@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   #this is for fixing 422 error in Devise with Angularjs
-  devise_for :users, controllers: {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  devise_for :users, controllers: {sessions: 'sessions'}
 
   # You can have the root of your site routed with "root"
   root to: 'application#angular'

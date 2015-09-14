@@ -2,7 +2,8 @@ angular.module('arBlog')
 .controller('PostsCtrl',[
 	'$scope',
 	'postsFactory',
-	function($scope,postsFactory){
+	'metaService',
+	function($scope,postsFactory,metaService){
 		$scope.posts = postsFactory.posts;
 		//empty object that will receive form field data
 		$scope.post = {};
@@ -12,6 +13,11 @@ angular.module('arBlog')
 		$scope.created = false;
 		//delete this?
 		$scope.errorMsg = undefined;
+
+		//meta title
+		metaService.setTitle('Blog de mierda');
+		//meta description
+		metaService.setDescription('Descripción del Blog de mierda');
 
 		//Add Post
 		$scope.addOrEditPost = function(){

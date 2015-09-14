@@ -39,6 +39,7 @@ config/secrets.yml
 /log/*.log
 /log/*
 /log
+*.log
 
 #ignorar
 anotaciones

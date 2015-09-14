@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="arBlog">
 <head>
-  <title>ArBlog</title>
+  <meta name="fragment" content="!">
+  <title ng-bind="title || 'AR-Blog'">Default</title>
+  <meta name="description" content="{{description || 'Descipción genérica'}}"/>
+  <meta ng-if="twitterMetas" ng-repeat="(key, value) in twitterMetas" name="{{key}}" content="{{value}}"/>
+
+  <meta ng-if="ogMetas" ng-repeat="(key, value) in ogMetas" name="{{key}}" content="{{value}}"/>
+  
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <base href="/">
 </head>
-<body ng-app="arBlog">
+<body>
 	<div ng-include="'nav/_nav.html'"></div>
-	<div ui-view></div>
+	<ui-view></ui-view>
 </body>
 </html>
