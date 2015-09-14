@@ -13,7 +13,11 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    respond_with @post
+    begin
+      respond_with @post
+    rescue
+      redirect_to root_path
+    end
   end
 
   # GET /posts/new

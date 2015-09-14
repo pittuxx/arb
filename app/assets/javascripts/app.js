@@ -3,7 +3,9 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 .config([
 	'$stateProvider',
 	'$urlRouterProvider',
-	function($stateProvider,$urlRouterProvider){
+	'$locationProvider',
+	function($stateProvider,$urlRouterProvider,$locationProvider){
+		$locationProvider.html5Mode(false).hashPrefix('!');
 		$stateProvider
 			.state('posts', {
 				url: '/',
@@ -85,8 +87,9 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 ])
 
 //angular.module('arBlog')
-/*.run(['$rootScope','Auth',function($rootScope,Auth){
+.run(['$rootScope','Auth',function($rootScope,Auth){
 	//present in all the app
+	//check auth outside navCtrl
 	$rootScope.signedIn = Auth.isAuthenticated;
 	$rootScope.logout = Auth.logout;
-}])*/
+}])
