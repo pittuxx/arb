@@ -31,7 +31,7 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 			})
 			.state('post',{
 				//url: '/posts/{id:[0-9]{1,8}}',
-				url: '/posts/:slug',
+				url: '/:slug',
 				templateUrl: 'post/_post.html',
 				controller: 'PostCtrl',
 				resolve: {

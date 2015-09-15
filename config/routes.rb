@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #get 'sitemap/index'
+  get "sitemap" => "sitemap#index", format: :xml, as: :sitemap
+
   #this is for fixing 422 error in Devise with Angularjs
   devise_for :users, controllers: {sessions: 'sessions'}
   # The priority is based upon order of creation: first created -> highest priority.

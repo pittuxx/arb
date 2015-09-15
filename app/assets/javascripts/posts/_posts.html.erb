@@ -9,8 +9,8 @@
 	<ul>
 		<li>{{pos.title}}</li>
 		<li>{{pos.body}}</li>
-		<li><a href="#!/posts/{{pos.slug}}">Enlace</a></li>
-		<li><a href="#!/posts/edit-post/{{pos.slug}}">Editar</a></li>
+		<li><a href="#!/{{pos.slug}}">Enlace</a></li>
+		<li ng-if="signedIn()"><a href="#!/posts/edit-post/{{pos.slug}}">Editar</a></li>
 		<li ng-if="signedIn()"><a href="#" ng-click="removePost(pos)">Eliminar</a></li>
 	</ul>
 </div>
