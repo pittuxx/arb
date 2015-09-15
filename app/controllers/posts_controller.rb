@@ -40,7 +40,8 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_with @post.update(post_params)
+    @post.update(post_params)
+    respond_with @post
   end
 
   # DELETE /posts/1
@@ -52,7 +53,8 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      #@post = Post.find(params[:id])
+      @post = Post.find_by_slug(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -64,6 +66,7 @@ class PostsController < ApplicationController
                                   :user_id, 
                                   :meta_description, 
                                   :meta_title, 
-                                  :published)
+                                  :published,
+                                  :user_id)
     end
 end

@@ -17,16 +17,6 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 					}]
 				}
 			})
-			.state('post',{
-				url: '/posts/{id:[0-9]{1,8}}',
-				templateUrl: 'post/_post.html',
-				controller: 'PostCtrl',
-				resolve: {
-					post: ['$stateParams', 'postsFactory', function($stateParams,postsFactory){
-						return postsFactory.get($stateParams.id);
-					}]
-				}
-			})
 			.state('newPost',{//Si se cambia a slug habrá que poner esta ruta encima de 'post'
 				url: '/posts/new-post',
 				templateUrl: 'posts/_new.html',
@@ -39,8 +29,20 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 					}]
 				}
 			})
+			.state('post',{
+				//url: '/posts/{id:[0-9]{1,8}}',
+				url: '/posts/:slug',
+				templateUrl: 'post/_post.html',
+				controller: 'PostCtrl',
+				resolve: {
+					post: ['$stateParams', 'postsFactory', function($stateParams,postsFactory){
+						return postsFactory.get($stateParams.slug);
+					}]
+				}
+			})
 			.state('postEdit', {
-				url: '/posts/edit-post/{id:[0-9]{1,8}}',
+				//url: '/posts/edit-post/{id:[0-9]{1,8}}',
+				url: '/posts/edit-post/:slug',
 				templateUrl: 'post/_edit.html',
 				controller: 'PostCtrl',
 				resolve: {
@@ -52,7 +54,7 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 						if(!Auth.isAuthenticated()){
 							return $q.reject("Not Authorized");
 						}else{
-								return postsFactory.get($stateParams.id);
+								return postsFactory.get($stateParams.slug);
 							}
 						}
 					]

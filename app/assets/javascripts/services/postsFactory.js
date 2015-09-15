@@ -8,8 +8,8 @@ angular.module('arBlog')
 		});
 	};
 
-	o.get = function(id){
-		return $http.get('/posts/' + id + '.json').then(function(res){
+	o.get = function(slug){
+		return $http.get('/posts/' + slug + '.json').then(function(res){
 			return res.data;
 		});
 	};
@@ -24,7 +24,7 @@ angular.module('arBlog')
 	};
 
 	o.update = function(post){
-		return $http.put('/posts/' + post.id + '.json', post).then(function(res){
+		return $http.put('/posts/' + post.slug + '.json', post).then(function(res){
 			return res.data;
 		}, function(e) {
 			$rootScope.$broadcast('unauthorizedAction',{errorMessage: e.data.error});
@@ -33,7 +33,7 @@ angular.module('arBlog')
 	};
 
 	o.delete = function(post){
-		return $http.delete('/posts/' + post.id + '.json').then(function(){
+		return $http.delete('/posts/' + post.slug + '.json').then(function(){
 			return o.getAll();
 		}, function(e) {
 			$rootScope.$broadcast('unauthorizedAction',{errorMessage: e.data.error});
