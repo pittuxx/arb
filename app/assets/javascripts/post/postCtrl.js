@@ -8,6 +8,7 @@ angular.module('arBlog')
 	function($scope,postsFactory,post,metaService,$location){
 		post.url = $location.url();
 		$scope.post = post;
+		$scope.my_markdown = post.body;
 		$scope.updated = false;
 		//message for showing in form
 		$scope.what = 'Edit Post';

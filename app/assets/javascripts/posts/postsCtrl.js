@@ -3,7 +3,8 @@ angular.module('arBlog')
 	'$scope',
 	'postsFactory',
 	'metaService',
-	function($scope,postsFactory,metaService){
+	'marked',
+	function($scope,postsFactory,metaService,marked){
 		$scope.posts = postsFactory.posts;
 		//empty object that will receive form field data
 		$scope.post = {};
@@ -44,5 +45,9 @@ angular.module('arBlog')
 		$scope.$on('unauthorizedAction',function(e,data){
 			$scope.errorMsg = data.errorMessage;
 		});
+
+		$scope.renderText = function(text){
+			return marked(text);
+		};
 	}
 ]);

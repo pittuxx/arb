@@ -1,4 +1,4 @@
-angular.module('arBlog',['ui.router', 'templates', 'Devise','ngCookies'])
+angular.module('arBlog',['ui.router', 'templates', 'Devise', 'ngSanitize', 'hc.marked'])
 
 .config([
 	'$stateProvider',

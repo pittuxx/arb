@@ -13,7 +13,8 @@
  *= require_tree .
  *= require_self
  *= require bootstrap/dist/css/bootstrap
+ *= require highlightjs/styles/github
  */
-a:visited {
+/*a:visited {
 	color:#337ab7;
-}
+}*/
