@@ -1,9 +1,39 @@
-<div class="collapse navbar-collapse pull-right" ng-controller="NavCtrl">
-  <ul class="nav navbar-nav">
-    <li><a href="#!/">Home</a></li>
-    <li ng-hide="signedIn()"><a href="#!/login">Log In</a></li>
-    <li ng-hide="signedIn()"><a href="#!/register">Register</a></li>
-    <li ng-if="signedIn()"><a href="#!/">{{ user.username }}</a></li>
-    <li ng-if="signedIn()"><a href="#!/" ng-click="logout()">Log Out</a></li>
-  </ul>
-</div>
+
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+		<div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation-bar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#!/">Blog de Mierda!</a>
+    </div>
+
+    <div class="collapse navbar-collapse pull-right" ng-controller="NavCtrl" id="navigation-bar">
+
+      <ul class="nav navbar-nav nav-pills">
+        <li role="navigation" ng-class="{ active: isActive('/') }">
+        	<a href="#!/">Home</a>
+        </li>
+        <li role="navigation" ng-class="{ active: isActive('/login') }" ng-hide="signedIn()">
+        	<a href="#!/login">Log In</a>
+        </li>
+        <li role="navigation" ng-class="{ active: isActive('/register') }" ng-hide="signedIn()">
+        	<a href="#!/register">Register</a>
+        </li>
+        <li role="navigation" ng-class="{ active: isActive('/posts/new-post') }" ng-if="signedIn()">
+        	<a href="#!/posts/new-post">Nuevo post</a>
+        </li>
+        <li role="navigation" ng-class="{ active: isActive('/user') }" ng-if="signedIn()">
+        	<a href="#!/user">{{ user.username }}</a>
+        </li>
+        <li role="navigation" ng-class="{ active: isActive('') }" ng-if="signedIn()">
+        	<a href="#!/" ng-click="logout()">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

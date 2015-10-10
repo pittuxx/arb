@@ -13,6 +13,10 @@ angular.module('arBlog')
 		$scope.created = false;
 		//delete this?
 		$scope.errorMsg = undefined;
+		//resume few words for post list
+		$scope.resume = function(body){
+			return body.split(/\s+/).slice(0,10).join(" ") + '...';
+		};
 
 		//meta title
 		metaService.setTitle('Blog de mierda');

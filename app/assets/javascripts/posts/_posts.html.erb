@@ -1,20 +1,51 @@
-<div class="page-header">
-  <h1>Posts</h1>
-  <h2 ng-if="errorMsg">{{errorMsg}}</h2>
-  <h2>{{what}}</h2>
-</div>
+<!-- postsCtrl -->
+<header class="page-header">
+	<div class="row">
+		<div class="col-md-4">
+			<h1>angular-rails-Blog.try?</h1>
+  		<h2 ng-if="errorMsg">{{errorMsg}}</h2>
+		</div>
+		<div class="col-md-8">
+			<h3><i>I should be a claim!</i></h3>
+		</div>
+	</div>
+  
+</header>
 
-<div ng-repeat="pos in posts | orderBy:'id'"><!--post ya está ocupado en el controlador-->
+
+<div class="row">
+<div class="col-md-9">
+<section ng-repeat="pos in posts | filter:search | orderBy:'-id' "><!--post ya está ocupado en el controlador-->
 	<!--<ul ng-if="pos.published"> show only if published is true -->
-	<ul>
-		<li>{{pos.title}}</li>
-		<li>{{pos.body}}</li>
-		<li><a href="#!/{{pos.slug}}">Enlace</a></li>
-		<li ng-if="signedIn()"><a href="#!/posts/edit-post/{{pos.slug}}">Editar</a></li>
-		<li ng-if="signedIn()"><a href="#" ng-click="removePost(pos)">Eliminar</a></li>
-	</ul>
-</div>
-<p ng-if="signedIn()"><a href="#!/posts/new-post">Nuevo post</a></p>
+	<header><h3>{{pos.title}}</h3></header>
+	<article>
+		{{resume(pos.body)}} <br>
+		<a href="#!/{{pos.slug}}">Continuar leyendo</a>
+	</article>
+	<footer>
+		<a ng-if="signedIn()" href="#!/posts/edit-post/{{pos.slug}}">Editar | </a>
+		<a ng-if="signedIn()" href="#" ng-click="removePost(pos)">Eliminar</a>
+	</footer>
+</section>
+<br>
+<br>
+<p ng-if="signedIn()"><a href="#!/posts/new-post" class="btn btn-primary">Nuevo post</a></p>
 <div ng-if="user">
 	<h1>HOLA</h1>
 </div>
+</div>
+<div class="col-md-3">
+<aside>
+	<div>
+		<label for="">Filtrar</label>
+		<input type="text" ng-model="search">
+	</div>
+	<div>
+		<strong>Últimos 5 posts</strong>
+		<div ng-repeat="pos in posts | orderBy: '-id' | limitTo:5 ">
+			<p>{{pos.title}}</p>
+		</div>
+	</div>	
+</aside>
+</div>
+</div><!-- row principal -->

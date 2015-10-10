@@ -1,7 +1,5 @@
 angular.module('arBlog')
-	.service('metaService',[
-		'$rootScope',
-		function($rootScope){
+	.service('metaService',['$rootScope',function($rootScope){
 
 			this.setTitle = function(title){
 				$rootScope.title = title;

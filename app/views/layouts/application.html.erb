@@ -12,7 +12,15 @@
   <base href="/">
 </head>
 <body>
-	<div ng-include="'nav/_nav.html'"></div>
-	<ui-view></ui-view>
+  <!--<div class="container container-fluid">-->
+  <ng-include src="'nav/_nav.html'"></ng-include>
+  <div class="container">
+    <ui-view></ui-view>
+    <hr>
+    <footer>
+      Footer de la webada...
+    </footer>
+  </div>
+  <!--</div>-->
 </body>
 </html>

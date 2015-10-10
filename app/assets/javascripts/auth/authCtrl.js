@@ -3,7 +3,9 @@ angular.module('arBlog')
 	'$scope',
 	'$state',
 	'Auth',
-	function($scope,$state,Auth) {
+	'$http',
+	function($scope,$state,Auth,$http) {
+
 
 		$scope.login = function(){
 			Auth.login($scope.user).then(function(){
@@ -15,5 +17,5 @@ angular.module('arBlog')
 			Auth.register($scope.user).then(function(){
 				$state.go('posts');
 			});
-		};		
+		};
 	}])

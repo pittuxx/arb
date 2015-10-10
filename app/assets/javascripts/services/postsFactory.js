@@ -1,5 +1,5 @@
 angular.module('arBlog')
-.factory('postsFactory',['$http','$rootScope',function($http,$rootScope){
+.factory('postsFactory',['$http','$rootScope', '$exceptionHandler',function($http,$rootScope,$exceptionHandler){
 	var o = { posts: [] };
 
 	o.getAll = function(){
@@ -13,6 +13,18 @@ angular.module('arBlog')
 			return res.data;
 		});
 	};
+	//o.get = function(slug){
+	//	return $http.get('/posts/' + slug + '.json').then(function(res,error){
+	//		if(res.data === null){
+	//			throw error;
+	//		} else {
+	//			return res.data;
+	//		}
+	//	}, function(e){
+	//		$rootScope.$broadcast('nullPost',{errorMessage: e.data.error});
+	//		console.log('error: ' + e);
+	//	});
+	//};
 
 	o.create = function(post){
 		return $http.post('/posts.json', post).then(function(data){

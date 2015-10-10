@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 
+
   def angular
     render 'layouts/application'
   end
@@ -20,6 +21,14 @@ class ApplicationController < ActionController::Base
   private
   def configure_permitted_parameters
   	devise_parameter_sanitizer.for(:sign_up) << :username
+
+    devise_parameter_sanitizer.for(:sign_in) { |u|
+      u.permit(:login, :username, :email, :password, :remember_me) 
+    }
+
+    devise_parameter_sanitizer.for(:account_update) { |u| 
+      u.permit(:password, :password_confirmation, :current_password, :email) 
+    }
   end
 
   #Clean up cookies and session on InvalidAuthenticityRequest

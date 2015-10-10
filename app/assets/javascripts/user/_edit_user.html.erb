@@ -1,0 +1,49 @@
+<div class="jumbotron">
+	<h2>Editar Usuario - {{user.email}}</h2>
+	<hr>
+
+	<div class="row">
+		<div class="col-md-6">
+		<h3>Change Password</h3>
+			<form ng-submit="updatePassword()">
+				<div class="form-group">
+					<label for="password" class="control-label">New Password</label>
+					<input type="text" class="form-control" ng-model="userPassword.password">
+				</div>
+
+				<div class="form-group">
+					<label for="password_confirmation" class="control-label">Confirm Password</label>
+					<input type="text" class="form-control" ng-model="userPassword.password_confirmation">
+				</div>
+
+				<div class="form-group">
+					<label for="current_password" class="control-label">Current Password</label>
+					<input type="text" class="form-control" ng-model="userPassword.current_password">
+				</div>
+
+				<div class="form-group">
+					<input type="submit" class="btn btn-default" value="Update">
+				</div>
+			</form>
+		</div>
+		
+		<div class="col-md-6">
+		<h3>Change email</h3>
+			<form ng-submit="updateEmail()">
+				<div class="form-group">
+					<label for="email" class="control-label">Email</label>
+					<input type="email" class="form-control" ng-model="userEmail.email">
+				</div>
+
+				<div class="form-group">
+					<label for="current_password" class="control-label">Password Actual</label>
+					<input type="text" class="form-control" ng-model="userEmail.current_password">
+				</div>
+
+				<div class="form-group">
+					<input type="submit" class="btn btn-default" value="Update">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

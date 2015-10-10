@@ -1,4 +1,4 @@
-angular.module('arBlog',['ui.router', 'templates', 'Devise'])
+angular.module('arBlog',['ui.router', 'templates', 'Devise','ngCookies'])
 
 .config([
 	'$stateProvider',
@@ -26,17 +26,6 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 						if(!Auth.isAuthenticated()){
 							$state.go('posts');
 						}
-					}]
-				}
-			})
-			.state('post',{
-				//url: '/posts/{id:[0-9]{1,8}}',
-				url: '/:slug',
-				templateUrl: 'post/_post.html',
-				controller: 'PostCtrl',
-				resolve: {
-					post: ['$stateParams', 'postsFactory', function($stateParams,postsFactory){
-						return postsFactory.get($stateParams.slug);
 					}]
 				}
 			})
@@ -82,6 +71,30 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise'])
 					})
 				}]
 			})
+			.state('editUser', {
+				url: '/user',
+				templateUrl: 'user/_edit_user.html',
+				controller: 'UserCtrl',
+				onEnter: ['$state','Auth','$q', function($state,Auth,$q){
+						if(!Auth.isAuthenticated()){
+							return $q.reject("Not Authorized");
+						}else{
+							return $q.resolve();
+						}
+					}
+				]
+			})
+			.state('post',{
+				//url: '/posts/{id:[0-9]{1,8}}',
+				url: '/:slug',
+				templateUrl: 'post/_post.html',
+				controller: 'PostCtrl',
+				resolve: {
+					post: ['$stateParams', 'postsFactory', function($stateParams,postsFactory){
+						return postsFactory.get($stateParams.slug);
+					}]
+				}
+			})//'post-state' must be the last not to conflict with other urls...
 		//para eliminar el hastag, pero parece incompatible con otherwise()
 		//$locationProvider.html5Mode(true).hashPrefix('!');
 		$urlRouterProvider.otherwise('/');
