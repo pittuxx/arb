@@ -1,0 +1,111 @@
+<h2>Markdown</h2>
+
+	<table class="table text-left" id="tablita">
+		<tr>
+			<td><h1>h1</h1></td>
+			<td># h1</td>
+			<td><h2> h2 </h2></td>
+			<td> ## h2 </td>
+			<td><h3> h3 </h3></td>
+			<td> ### h3 </td>
+		</tr>
+		<tr>
+			<td><h4>h4</h4></td>
+			<td>#### h4</td>
+			<td><h5>h5</h5></td>
+			<td>##### h5</td>
+			<td><h6>h6</h6></td>
+			<td>###### h6</td>
+		</tr>
+		<tr>
+			<td><em>Cursiva</em></td>
+			<td>_Cursiva_</td>
+			<td><strong>negrita</strong></td>
+			<td>**Negrita**</td>
+			<td><blockquote>Quote</blockquote></td>
+			<td>> Quote</td>
+		</tr>
+		<tr>
+			<td>
+				<ul style="list-style-type: none; padding:0;">
+					<li>Item1</li>
+					<li>Item2</li>
+					<li>Item3</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="list-style-type: none; padding:0;">
+					<li>* Item1</li>
+					<li>+ Item2</li>
+					<li>- Item3</li>
+				</ul>
+			</td>
+			<td>
+				<ol style="padding:0;">
+					<li>Num</li>
+					<li>Num</li>
+					<li>Num</li>
+				</ol>
+			</td>
+			<td>
+				<ul style="list-style-type: none; padding:0;">
+					<li>1. Num</li>
+					<li>2. Num</li>
+					<li>3. Num</li>
+				</ul>
+			</td>
+			<td><pre><code>code</code></pre></td>
+			<td>2 Tabs</td>
+		</tr>
+	</table>
+	<marked>
+	Here is an example of Ruby (2 tabs of indentation):
+
+	    def application guau
+	      @miau = guau
+	    end
+
+	Simple code with \`word\`: `printf()`
+
+	Another way:
+
+			```javascript
+			var s = "JavaScript syntax highlighting";
+			alert(s);
+			```
+
+	```javascript
+	var s = "JavaScript syntax highlighting";
+	alert(s);
+	```
+	</marked>
+	<br>
+
+	<marked>
+	_Links:_
+
+			This is [an example](http://example.com/ "Title") inline link.
+		This is [an example](http://example.com/ "Title") inline link.
+
+			[This link](http://example.net/) has no title attribute.
+	[This link](http://example.net/) has no title attribute.
+
+	_Local Link:_
+
+			See my [About](/about/) page for details.  
+	See my [About](/about/) page for details.
+
+	_Implicit link_
+
+			Visit [Daring Fireball][] for more information.
+			[Daring Fireball]: http://daringfireball.net/ "Title?"
+	Visit [Daring Fireball][] for more information.
+	[Daring Fireball]: http://daringfireball.net/ "Title?"
+
+	_Images_
+
+			![Alt text](/assets/anjuta.png)
+			![Alt text](/assets/anjuta.png "Optional title")
+	![Alt text](/assets/anjuta.png)
+	![Alt text](/assets/anjuta.png "Optional title")
+	</marked>

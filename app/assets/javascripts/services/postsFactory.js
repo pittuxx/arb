@@ -13,18 +13,6 @@ angular.module('arBlog')
 			return res.data;
 		});
 	};
-	//o.get = function(slug){
-	//	return $http.get('/posts/' + slug + '.json').then(function(res,error){
-	//		if(res.data === null){
-	//			throw error;
-	//		} else {
-	//			return res.data;
-	//		}
-	//	}, function(e){
-	//		$rootScope.$broadcast('nullPost',{errorMessage: e.data.error});
-	//		console.log('error: ' + e);
-	//	});
-	//};
 
 	o.create = function(post){
 		return $http.post('/posts.json', post).then(function(data){
@@ -36,7 +24,7 @@ angular.module('arBlog')
 	};
 
 	o.update = function(post){
-		return $http.put('/posts/' + post.slug + '.json', post).then(function(res){
+		return $http.put('/posts/' + post.prevSlug + '.json', post).then(function(res){
 			return res.data;
 		}, function(e) {
 			$rootScope.$broadcast('unauthorizedAction',{errorMessage: e.data.error});

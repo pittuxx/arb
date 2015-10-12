@@ -84,6 +84,10 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise', 'ngSanitize', 'hc.m
 					}
 				]
 			})
+			.state('form', {
+				url: '/form',
+				templateUrl: 'form/_form.html'
+			})
 			.state('post',{
 				//url: '/posts/{id:[0-9]{1,8}}',
 				url: '/:slug',

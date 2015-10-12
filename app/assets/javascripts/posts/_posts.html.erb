@@ -27,7 +27,7 @@
 		<a href="#!/{{pos.slug}}">Continuar leyendo</a>
 	</article>
 	<footer>
-		<a ng-if="signedIn()" href="#!/posts/edit-post/{{pos.slug}}">Editar | </a>
+		<a ng-if="signedIn()" href="#!/posts/edit-post/{{pos.slug}}">Editar</a> |
 		<a ng-if="signedIn()" href="#" ng-click="removePost(pos)">Eliminar</a>
 	</footer>
 </section>
@@ -47,7 +47,7 @@
 	<div>
 		<strong>Últimos 5 posts</strong>
 		<div ng-repeat="pos in posts | orderBy: '-id' | limitTo:5 ">
-			<p>{{pos.title}}</p>
+			<p><a href="#!/{{pos.slug}}">{{pos.title}}</a></p>
 		</div>
 	</div>	
 </aside>

@@ -1,42 +1,55 @@
-<div style="width: 60%;margin:0 auto;">
-	<form ng-submit="addOrEditPost()" style="margin-top:30px;">
-	  <h3>{{what}}</h3>
+<div class="col-md-6">
+	<form ng-submit="addOrEditPost()" style="margin-top:30px;" class="form-horizontal">
 
 	  <div class="form-group">
-	  	  <input type="text" class="form-control" placeholder="Title" ng-model="post.title">
+	  		<label>Title</label>
+	  		<input type="text" class="form-control" placeholder="Title" ng-model="post.title">
 	  </div>
 
 	  <div class="form-group">
-	  	  <textarea type="text" class="form-control" placeholder="Body" ng-model="post.body"></textarea>
+	  		<label class="text-right">Body</label>
+	  	  <textarea type="text" class="form-control" placeholder="Body" ng-model="post.body" rows="10"></textarea>
 	  </div>
 	  
 	  <div class="form-group">
+	  		<label class="text-right">Url</label>
 	  	  <input type="text" class="form-control" placeholder="Slug" ng-model="post.slug">
 	  </div>
 
 	  <div class="form-group">
+	  		<label class="text-right">Category</label>
 	  	  <input type="text" class="form-control" placeholder="Category" ng-model="post.category">
 	  </div>
 
 	  <div class="form-group">
+	  		<label class="text-right">Description Meta Tag</label>
 	  	  <input type="text" class="form-control" placeholder="Meta Description" ng-model="post.meta_description">
 	  </div>
 
 	  <div class="form-group">
+	  		<label class="text-right">Title Meta Tag</label>
 	  	  <input type="text" class="form-control" placeholder="Meta Title" ng-model="post.meta_title">
 	  </div>
 		
+		<div class="form-group">
 		<div class="checkbox">
 			<label>
 	  	  <input type="checkbox" ng-model="post.published">Check me out, before you go go!
   	  </label>
 	  </div>
+	  </div>	
 
 	  <div class="form-group">
-	  	<button type="submit" class="btn btn-primary">Post</button>
+	  	<button type="submit" class="btn btn-primary">Post!</button>
   	</div>
   	<p ng-show="updated">Updated!: {{updated}}</p>
   	<p ng-show="created">Updated!: {{created}}</p>
 	</form>
+	
 	<p><a href="#!/">Ir al Inicio</a></p>
+	<p><a href="#!/{{post.slug}}">Ir al Post</a></p>
+	
+</div>
+<div class="col-md-6">
+	<div ng-include="'form/_md_example.html'"></div>
 </div>
