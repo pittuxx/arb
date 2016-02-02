@@ -14,42 +14,46 @@
 
 
 <div class="row">
-<div class="col-md-9">
-<section ng-repeat="pos in posts | filter:search | orderBy:'-id' "><!--post ya está ocupado en el controlador-->
-	<!--<ul ng-if="pos.published"> show only if published is true -->
-	<header><h3>{{pos.title}}</h3></header>
-	<article>
-		
-		<div ng-bind-html="resume(renderText(pos.body))"></div>
+	<div class="col-md-9">
+		<div class="col-md-10">
+			<section class="post-resume" ng-repeat="pos in posts | filter:search | orderBy:'-id' ">
+			<!--post ya está ocupado en el controlador-->
+				<!--<ul ng-if="pos.published"> show only if published is true -->
+				<header><h3>{{pos.title}}</h3></header>
+				<time>{{pos.created_at | date: 'fullDate'}}</time>
+				<article>
+					
+					<div ng-bind-html="resume(renderText(pos.body))"></div>
 
-		<marked>
-		</marked> <br>
-		<a href="#!/{{pos.slug}}">Continuar leyendo</a>
-	</article>
-	<footer>
-		<a ng-if="signedIn()" href="#!/posts/edit-post/{{pos.slug}}">Editar</a> |
-		<a ng-if="signedIn()" href="#" ng-click="removePost(pos)">Eliminar</a>
-	</footer>
-</section>
-<br>
-<br>
-<p ng-if="signedIn()"><a href="#!/posts/new-post" class="btn btn-primary">Nuevo post</a></p>
-<div ng-if="user">
-	<h1>HOLA</h1>
-</div>
-</div>
-<div class="col-md-3">
-<aside>
-	<div>
-		<label for="">Filtrar</label>
-		<input type="text" ng-model="search">
-	</div>
-	<div>
-		<strong>Últimos 5 posts</strong>
-		<div ng-repeat="pos in posts | orderBy: '-id' | limitTo:5 ">
-			<p><a href="#!/{{pos.slug}}">{{pos.title}}</a></p>
+					<marked>
+					</marked> <br>
+					<a href="#!/{{pos.slug}}">Continuar leyendo</a>
+				</article>
+				<footer>
+					<a ng-if="signedIn()" href="#!/posts/edit-post/{{pos.slug}}">Editar</a> 
+					<span ng-if="signedIn()">|</span>
+					<a ng-if="signedIn()" href="#" ng-click="removePost(pos)">Eliminar</a>
+				</footer>
+			</section>
 		</div>
-	</div>	
-</aside>
-</div>
+			<br/>
+			<br/>
+		<div class="col-md-10">
+			<p ng-if="signedIn()"><a href="#!/posts/new-post" class="btn btn-primary">Nuevo post</a></p>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<aside>
+			<div>
+				<label for="">Filtrar</label>
+				<input type="text" ng-model="search">
+			</div>
+			<div>
+				<strong>Últimos 5 posts</strong>
+				<div ng-repeat="pos in posts | orderBy: '-id' | limitTo:5 ">
+					<p><a href="#!/{{pos.slug}}">{{pos.title}}</a></p>
+				</div>
+			</div>	
+		</aside>
+	</div>
 </div><!-- row principal -->

@@ -1,4 +1,9 @@
-angular.module('arBlog',['ui.router', 'templates', 'Devise', 'ngSanitize', 'hc.marked'])
+angular.module('arBlog',['ui.router', 
+	'templates', 
+	'Devise', 
+	'ngSanitize', 
+	'hc.marked'
+	])
 
 .config([
 	'$stateProvider',
@@ -22,9 +27,10 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise', 'ngSanitize', 'hc.m
 				templateUrl: 'posts/_new.html',
 				controller: 'PostsCtrl',
 				resolve: {
-					auth: ['Auth','$state',function(Auth,$state){
+					auth: ['$q','Auth','$state',function($q,Auth,$state){
 						if(!Auth.isAuthenticated()){
-							$state.go('posts');
+							//$state.go('posts');
+							return $q.reject("Not Authorized");
 						}
 					}]
 				}
@@ -40,9 +46,9 @@ angular.module('arBlog',['ui.router', 'templates', 'Devise', 'ngSanitize', 'hc.m
 						'$stateParams',
 						'postsFactory',
 						function($q,Auth,$stateParams,postsFactory){
-						if(!Auth.isAuthenticated()){
-							return $q.reject("Not Authorized");
-						}else{
+							if(!Auth.isAuthenticated()){
+								return $q.reject("Not Authorized");
+							}else{
 								return postsFactory.get($stateParams.slug);
 							}
 						}

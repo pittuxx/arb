@@ -6,6 +6,7 @@ angular.module('arBlog')
 	'marked',
 	function($scope,postsFactory,metaService,marked){
 		$scope.posts = postsFactory.posts;
+		console.log($scope.posts);
 		//empty object that will receive form field data
 		$scope.post = {};
 		//message for showing in form
@@ -16,7 +17,7 @@ angular.module('arBlog')
 		$scope.errorMsg = undefined;
 		//resume few words for post list
 		$scope.resume = function(body){
-			return body.split(/\s+/).slice(0,10).join(" ") + '...';
+			return body.split(/\s+/).slice(0,10).join(" ") + "...";
 		};
 
 		//meta title
@@ -49,5 +50,6 @@ angular.module('arBlog')
 		$scope.renderText = function(text){
 			return marked(text);
 		};
+
 	}
 ]);

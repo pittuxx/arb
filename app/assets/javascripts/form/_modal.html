@@ -1,0 +1,38 @@
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" ng-controller = "uploadCtrl as uploads">
+
+	<div class="modal-dialog modal-lg">
+
+		<div class="modal-content">
+
+			<div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Images</h4>
+
+      </div>
+
+ 			<div class="modal-body">
+        <div class="row">
+          <div class="col-md-3" ng-repeat="image in imageList">
+            <div class="thumbnail">
+              <div class="delete-image text-center" ng-click="deleteImage(image)">X</div>
+              <img ng-src="{{image}}" alt="Responsive image" height="90px">
+              <div class="caption">
+                <input type="text" value='![Alt text]({{image}} "Optional title" :img-responsive)' onClick="this.select();">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+      	footer...
+      </div>
+
+		</div>
+
+	</div>
+
+</div><!-- fin modal -->

@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require bootstrap/dist/css/bootstrap
+ *= require highlightjs/styles/github
+ *= require_self
+ */
+
+#tablita td {
+	vertical-align: middle;
+}
+.post-resume {
+	background-color: #eee;
+	margin:10px;
+	padding:10px;
+	border-radius: 20px
+}
+article .img-responsive {
+	margin: 0 auto;
+}
+input.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+input.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile + label * {
+	pointer-events: none;
+}
+.thumbnail .caption {
+	padding: 5px;
+}
+.delete-image {
+	background-color: black;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  text-shadow: 1px 1px 1px #bbb;
+  /* top: 0; */
+  /* left: 0; */
+  /* margin: 4px; */
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+.thumbnail > img,
+.thumbnail a > img {
+	@media (min-width: 991px) { height:90px; }
+}

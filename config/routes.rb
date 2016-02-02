@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  #get 'sitemap/index'
+  # post image
+  match 'upload', to: 'uploads#upload', via: :post, format: :json
+
+  match 'list-files', to: 'uploads#list_files', via: :get, format: :json
+
+  match 'delete-file', to: 'uploads#delete_file', via: :delete, format: :json
+  # REEMPLAZAR LAS / POR - EN EL STRING DE PATH PARA LUEGO RECONSTRUIR...
+
+
+  # get 'sitemap/index'
   get "sitemap" => "sitemap#index", format: :xml, as: :sitemap
 
   #this is for fixing 422 error in Devise with Angularjs
