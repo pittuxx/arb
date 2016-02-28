@@ -16,7 +16,10 @@
 <div class="row">
 	<div class="col-md-9">
 		<div class="col-md-10">
-			<section class="post-resume" ng-repeat="pos in posts | filter:search | orderBy:'-id' ">
+
+
+
+			<section class="post-resume" ng-repeat="pos in posts | filter:search | orderBy:'-id' | startFromGrid: currentPage * pageSize | limitTo: pageSize">
 			<!--post ya está ocupado en el controlador-->
 				<!--<ul ng-if="pos.published"> show only if published is true -->
 				<header><h3>{{pos.title}}</h3></header>
@@ -35,6 +38,28 @@
 					<a ng-if="signedIn()" href="#" ng-click="removePost(pos)">Eliminar</a>
 				</footer>
 			</section>
+
+			<nav>
+			  <ul class="pagination">
+			    <li ng-class="{'disabled': currentPage == 0}">
+			      <a href="" aria-label="Previous" ng-click='goBack()'> 
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+
+			    <li ng-repeat='page in pages' ng-click='setPage(page.no)' ng-class="{'active': currentPage == page.no - 1}">
+			    	<a href="#">{{page.no}}</a>
+			    </li>
+
+			    <li ng-class="{'disabled': currentPage >= posts.length/pageSize - 1}">
+			      <a href="#" aria-label="Next" ng-click='goForward()'>
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+
+
 		</div>
 			<br/>
 			<br/>

@@ -118,3 +118,10 @@ angular.module('arBlog',['ui.router',
 	$rootScope.signedIn = Auth.isAuthenticated;
 	$rootScope.logout = Auth.logout;
 }])
+
+.filter('startFromGrid', function() {
+   return function(input, start) {
+      start = +start;
+      return input.slice(start);
+   };
+});

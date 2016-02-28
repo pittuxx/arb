@@ -6,7 +6,7 @@ angular.module('arBlog')
 	'marked',
 	function($scope,postsFactory,metaService,marked){
 		$scope.posts = postsFactory.posts;
-		console.log($scope.posts);
+		//console.log($scope.posts);
 		//empty object that will receive form field data
 		$scope.post = {};
 		//message for showing in form
@@ -51,5 +51,65 @@ angular.module('arBlog')
 			return marked(text);
 		};
 
+		//Code for Pagination
+		$scope.currentPage = 0;
+		$scope.pageSize = 3;
+		$scope.pages = [];
+
+		$scope.configPages = function(){
+			$scope.pages.length = 0;
+			var inicio = $scope.currentPage - 4;
+			var fin = $scope.currentPage - 5;
+			var postsPerPage = Math.ceil($scope.posts.length / $scope.pageSize);
+
+			if (inicio < 1) {
+				inicio = 1;
+				if (postsPerPage > 10) {
+					fin = 10;
+				} else {
+					fin = postsPerPage;
+				}
+			} else {
+				if (inicio >= postsPerPage - 10) {
+					inicio = postsPerPage - 10;
+					fin = postsPerPage;
+				}
+			}
+
+			if (inicio < 1) {
+				inicio = 1
+			};
+
+			for (var i = inicio; i <= fin; i++) {
+				$scope.pages.push({no: i});
+			}
+
+			if ($scope.currentPage >= $scope.pages.length){
+				$scope.currentPage = $scope.pages.length - 1;
+			}
+		};
+
+		$scope.setPage = function(index) {
+			$scope.currentPage = index - 1;
+		};
+
+		$scope.goBack = function(){
+			if ($scope.currentPage === 0) {
+				return;
+			} else {
+				$scope.currentPage -= 1;
+			}
+		};
+
+		$scope.goForward = function(){
+			if ($scope.currentPage >=  $scope.posts.length/$scope.pageSize - 1) {
+				return;
+			} else {
+				$scope.currentPage += 1;
+			}
+		};
+
+		$scope.configPages();
+		//End pagination
 	}
-]);
+])
