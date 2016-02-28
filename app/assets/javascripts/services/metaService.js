@@ -15,7 +15,7 @@ angular.module('arBlog')
 					'twitter:site': '@yourprofile',
 					'twitter:title': postObject.title,
 					'twitter:description': postObject.meta_description,
-					'twitter:url': 'http://mywebsite.com/#!' + postObject.url,
+					'twitter:url': 'http://mywebsite.com/#!/' + postObject.slug,
 					'twitter:image': 'url de la imagen en postObject'
 				}
 			}
@@ -24,7 +24,7 @@ angular.module('arBlog')
 				$rootScope.ogMetas = {
 					'og:title': postObject.title,
 					'og:type': 'article',
-					'og:url': 'http://mywebsite.com/#!' + postObject.url,
+					'og:url': 'http://mywebsite.com/#!/' + postObject.slug,
 					'og:image': 'url de la imagen',
 					'og:description': postObject.meta_description,
 					'og:site_name': 'Blog de Mierda',
