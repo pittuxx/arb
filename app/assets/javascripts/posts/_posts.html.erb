@@ -13,7 +13,7 @@
 </header>
 
 
-<div class="row">
+<div class="row postList">
 	<div class="col-md-9">
 		<div class="col-md-10">
 
@@ -30,7 +30,10 @@
 
 					<marked>
 					</marked> <br>
+					<!--<a href="#!/{{pos.slug}}#disqus_thread" data-disqus-identifier="/{{pos.slug}}">-->
 					<a href="#!/{{pos.slug}}">Continuar leyendo</a>
+					<disqus-count data-post="/{{pos.slug}}"></disqus-count>
+
 				</article>
 				<footer>
 					<a ng-if="signedIn()" href="#!/posts/edit-post/{{pos.slug}}">Editar</a> 
@@ -82,3 +85,4 @@
 		</aside>
 	</div>
 </div><!-- row principal -->
+

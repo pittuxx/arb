@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="arBlog">
+<html>
 <head>
   <meta name="fragment" content="!">
   <title ng-bind="title || 'AR-Blog'">Default</title>
@@ -11,16 +11,28 @@
   <%= csrf_meta_tags %>
   <base href="/">
 </head>
-<body>
+<body ng-app="arBlog">
   <!--<div class="container container-fluid">-->
-  <ng-include src="'nav/_nav.html'"></ng-include>
-  <div class="container">
-    <ui-view></ui-view>
-    <hr>
-    <footer>
-      Footer de la webada...
-    </footer>
+  <div>
+    <ng-include src="'nav/_nav.html'"></ng-include>
+    <div class="container">
+      <ui-view></ui-view>
+      <hr>
+      <footer>
+        Footer de la webada...
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </footer>
+    </div>
   </div>
-  <!--</div>-->
+  <!-- directive: disqus-script -->
 </body>
 </html>

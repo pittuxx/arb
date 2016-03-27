@@ -1,5 +1,5 @@
 angular.module('arBlog')
-.factory('postsFactory',['$http','$rootScope', '$exceptionHandler',function($http,$rootScope,$exceptionHandler){
+.factory('postsFactory',['$http','$rootScope' ,function($http,$rootScope){
 	var o = { posts: [] };
 
 	o.getAll = function(){

@@ -119,9 +119,9 @@ angular.module('arBlog',['ui.router',
 	$rootScope.logout = Auth.logout;
 }])
 
-.filter('startFromGrid', function() {
-   return function(input, start) {
-      start = +start;
-      return input.slice(start);
-   };
-});
+.filter('startFromGrid', ['$rootScope',function($rootScope) {
+  return function(input, start) {
+    start = +start;
+    return input.slice(start);
+  };
+}]);

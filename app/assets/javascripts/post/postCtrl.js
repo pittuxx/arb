@@ -37,4 +37,10 @@ angular.module('arBlog')
 			$scope.errorMsg = data.errorMessage;
 		});
 
-	}]);
+		$scope.disqusConfig = {
+	    disqus_shortname: 'pitux',
+	    disqus_identifier: $location.path(),
+	    disqus_url: $location.absUrl()
+		};
+	}
+]);

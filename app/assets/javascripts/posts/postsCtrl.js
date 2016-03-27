@@ -53,7 +53,7 @@ angular.module('arBlog')
 
 		//Code for Pagination
 		$scope.currentPage = 0;
-		$scope.pageSize = 3;
+		$scope.pageSize = 4;
 		$scope.pages = [];
 
 		$scope.configPages = function(){
@@ -111,5 +111,6 @@ angular.module('arBlog')
 
 		$scope.configPages();
 		//End pagination
+
 	}
 ])
