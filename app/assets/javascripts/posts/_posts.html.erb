@@ -30,9 +30,14 @@
 
 					<marked>
 					</marked> <br>
-					<!--<a href="#!/{{pos.slug}}#disqus_thread" data-disqus-identifier="/{{pos.slug}}">-->
+					<a href="#!/{{pos.slug}}#disqus_thread" data-disqus-identifier="/{{pos.slug}}"></a><br>
 					<a href="#!/{{pos.slug}}">Continuar leyendo</a>
 					<disqus-count data-post="/{{pos.slug}}"></disqus-count>
+					<p>
+						<span ng-repeat="tag in pos.tag_ary">
+							<a href="#!/tags/{{tag}}">{{tag}}</a>
+						</span>
+					</p>
 
 				</article>
 				<footer>

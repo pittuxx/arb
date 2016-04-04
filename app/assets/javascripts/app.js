@@ -22,6 +22,16 @@ angular.module('arBlog',['ui.router',
 					}]
 				}
 			})
+			.state('tags', {
+				url: '/tags/:tag',
+				templateUrl: 'posts/_posts.html',
+				controller: 'TagsCtrl',
+				resolve: {
+					postPromise: ['postsFactory','$stateParams',function(postsFactory,$stateParams){
+						return postsFactory.getByTag($stateParams.tag);
+					}]
+				}
+			})
 			.state('newPost',{//Si se cambia a slug habrá que poner esta ruta encima de 'post'
 				url: '/posts/new-post',
 				templateUrl: 'posts/_new.html',

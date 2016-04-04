@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   # REEMPLAZAR LAS / POR - EN EL STRING DE PATH PARA LUEGO RECONSTRUIR...
 
 
+  # get :tag url
+  get "tags/:tag", to:'posts#index', as: :tag
+
   # get 'sitemap/index'
   get "sitemap" => "sitemap#index", format: :xml, as: :sitemap
 

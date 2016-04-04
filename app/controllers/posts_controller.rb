@@ -6,15 +6,19 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-    respond_with @posts
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag])
+    else
+      @posts = Post.all
+    end
+    respond_with @posts, methods: [:tag_list, :tag_ary]
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     begin
-      respond_with @post
+      respond_with @post, :methods => :tag_list
     rescue
       redirect_to root_path
     end
@@ -34,13 +38,16 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    respond_with Post.create(post_params)
+    @post = Post.create(post_params)
+    @post.tag_list=(params[:tag_list])
+    respond_with @post
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    @post.update(post_params)
+    @post.update_attributes(post_params)
+    @post.tag_list=(params[:tag_list])
     respond_with @post
   end
 
@@ -67,6 +74,7 @@ class PostsController < ApplicationController
                                   :meta_description, 
                                   :meta_title, 
                                   :published,
-                                  :user_id)
+                                  :user_id
+                                  )
     end
 end

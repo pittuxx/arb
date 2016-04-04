@@ -20,6 +20,10 @@ angular.module('arBlog')
 			return body.split(/\s+/).slice(0,10).join(" ") + "...";
 		};
 
+		$scope.renderText = function(text){
+			return marked(text);
+		};
+
 		//meta title
 		metaService.setTitle('Blog de mierda');
 		//meta description
@@ -46,10 +50,6 @@ angular.module('arBlog')
 		$scope.$on('unauthorizedAction',function(e,data){
 			$scope.errorMsg = data.errorMessage;
 		});
-
-		$scope.renderText = function(text){
-			return marked(text);
-		};
 
 		//Code for Pagination
 		$scope.currentPage = 0;
@@ -111,6 +111,9 @@ angular.module('arBlog')
 
 		$scope.configPages();
 		//End pagination
+
+		//console.log(postsFactory.getAll());
+		//console.log(postsFactory.getByTag('tag2'));
 
 	}
 ])
