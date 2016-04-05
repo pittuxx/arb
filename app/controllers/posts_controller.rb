@@ -7,9 +7,10 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
+      @posts = Post.tagged_with(params[:tag]).includes(:tags)
     else
-      @posts = Post.all
+      #@posts = Post.all
+      @posts = Post.includes(:tags)
     end
     respond_with @posts, methods: [:tag_list, :tag_ary]
   end
