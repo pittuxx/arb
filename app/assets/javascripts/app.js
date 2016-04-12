@@ -32,6 +32,16 @@ angular.module('arBlog',['ui.router',
 					}]
 				}
 			})
+			.state('category', {
+				url: '/category/:category',
+				templateUrl: 'posts/_posts.html',
+				controller: 'CategoryCtrl',
+				resolve: {
+					postPromise: ['postsFactory','$stateParams',function(postsFactory,$stateParams){
+						return postsFactory.getByCategory($stateParams.category);
+					}]
+				}
+			})
 			.state('newPost',{//Si se cambia a slug habrá que poner esta ruta encima de 'post'
 				url: '/posts/new-post',
 				templateUrl: 'posts/_new.html',

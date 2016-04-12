@@ -14,6 +14,12 @@ angular.module('arBlog')
 		});
 	};
 
+	o.getByCategory = function(category){
+		return $http.get('/category/' + category + '.json').then(function(res){
+			angular.copy(res.data, o.posts);
+		});
+	};
+
 	o.get = function(slug){
 		return $http.get('/posts/' + slug + '.json').then(function(res){
 			return res.data;

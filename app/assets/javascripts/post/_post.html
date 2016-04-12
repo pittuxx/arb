@@ -6,13 +6,19 @@
 	<li>{{post.title}}</li>
 	<li>{{post.body}}</li>
 	<li>{{post.slug}}</li>
-	<li>{{post.category}}</li>
+	<li>categoría: {{post.category}}</li>
 	<li>{{post.meta_description}}</li>
 	<li>{{post.meta_title}}</li>
 	<li>{{post.published}}</li>
 	<li>{{path}}</li>
 </ol>
 <div marked="my_markdown" class="text-justify"></div>
+<p>
+	<span ng-repeat="tag in post.tag_ary">
+		<a href="#!/tags/{{tag}}">{{tag}}</a>
+	</span>
+</p>
+<p>category: <a href="#!/category/{{post.category}}">{{post.category}}</a></p>
 
 <p><a href="#!/">Inicio</a></p>
 <p ng-if="signedIn()"><a href="#!/posts/edit-post/{{post.slug}}">Editar</a></p>

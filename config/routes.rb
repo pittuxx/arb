@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   # get :tag url
   get "tags/:tag", to:'posts#index', as: :tag
+  # get :category url
+  get "category/:category", to:'posts#index', as: :category
 
   # get 'sitemap/index'
   get "sitemap" => "sitemap#index", format: :xml, as: :sitemap

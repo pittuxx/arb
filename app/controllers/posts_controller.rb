@@ -8,6 +8,8 @@ class PostsController < ApplicationController
   def index
     if params[:tag]
       @posts = Post.tagged_with(params[:tag]).includes(:tags)
+    elsif params[:category]
+      @posts = Post.includes(:tags).where(category: params[:category])
     else
       #@posts = Post.all
       @posts = Post.includes(:tags)
@@ -19,7 +21,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     begin
-      respond_with @post, :methods => :tag_list
+      respond_with @post, methods: [:tag_list, :tag_ary]
     rescue
       redirect_to root_path
     end
