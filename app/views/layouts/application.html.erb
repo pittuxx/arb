@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="arBlog">
 <head>
   <meta name="fragment" content="!">
   <title ng-bind="title || 'AR-Blog'">Default</title>
   <meta name="description" content="{{description || 'Descipción genérica'}}"/>
   <meta ng-if="twitterMetas" ng-repeat="(key, value) in twitterMetas" name="{{key}}" content="{{value}}"/>
   <meta ng-if="ogMetas" ng-repeat="(key, value) in ogMetas" name="{{key}}" content="{{value}}"/>
+  <meta ng-if="tags" ng-repeat="tag in tags['article:tag']" name="article:tag" content="{{tag}}"/>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <base href="/">
 </head>
-<body ng-app="arBlog">
+<body>
   <!--<div class="container container-fluid">-->
   <div>
     <ng-include src="'nav/_nav.html'"></ng-include>

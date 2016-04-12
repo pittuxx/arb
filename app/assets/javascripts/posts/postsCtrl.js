@@ -28,6 +28,12 @@ angular.module('arBlog')
 		metaService.setTitle('Blog de mierda');
 		//meta description
 		metaService.setDescription('Descripción del Blog de mierda');
+		//set twitter meta tags
+		metaService.setTwitterMetas(null);
+		//set open graph meta tags
+		metaService.setOgMetas(null);
+		//set 'article:tag' meta
+		metaService.setTags(null);
 
 		//Add Post
 		$scope.addOrEditPost = function(){

@@ -21,6 +21,8 @@ angular.module('arBlog')
 		metaService.setTwitterMetas(post);
 		//set open graph meta tags
 		metaService.setOgMetas(post);
+		//set 'article:tag' meta
+		metaService.setTags(post.tag_ary);
 		// 
 		$scope.post.prevSlug = $scope.post.slug
 

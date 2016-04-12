@@ -20,7 +20,6 @@ angular.module('arBlog')
 		metaService.setTitle('Blog de mierda');
 		//meta description
 		metaService.setDescription('Descripción del Blog de mierda');
-		console.log($stateParams.category);
 	}
 ]);
 //incluir codigo de paginación???
